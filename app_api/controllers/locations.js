@@ -11,7 +11,7 @@ module.exports.locationsListByDistance = function(req, res) {
   var lng = parseFloat(req.query.lng);
   var lat = parseFloat(req.query.lat);
   var maxDistance = parseFloat(req.query.maxDistance);
-  if (lng && lat && maxDistance) {
+  if ((lng || lng === 0) && (lat || lat === 0) && maxDistance) {
     var point = {
       type: "Point",
       coordinates: [lng, lat]
@@ -59,6 +59,7 @@ module.exports.locationsCreate = function(req, res) {
     address: req.body.address,
     facilities: req.body.facilities.split(","),
     coords: [parseFloat(req.body.lng), parseFloat(req.body.lat)],
+    "2dsphereIndexVersion" : 1,
     openingTimes: [{
       days: req.body.days1,
       opening: req.body.opening1,
@@ -86,7 +87,7 @@ module.exports.locationsReadOne = function(req, res) {
       .findById(req.params.locationid)
       .exec(function(err, location) {
         if (err) {
-          sendJsonResponse(res, 400, err);
+          sendJsonResponse(res, 404, err);
           return;
         } else if (!location) {
           sendJsonResponse(res, 404, {
