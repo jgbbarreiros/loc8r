@@ -4,6 +4,7 @@ var dbURI = 'mongodb://localhost/Loc8r';
 if (process.env.NODE_ENV === 'production') {
  dbURI = process.env.MONGODB_URI;
 }
+mongoose.Promise = global.Promise;
 mongoose.connect(dbURI);
 
 // CONNECTION EVENTS
