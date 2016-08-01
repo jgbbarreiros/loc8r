@@ -16,6 +16,7 @@
     "tests"
   ],
   "dependencies": {
-    "bootswatch-dist": "amelia"
+    "bootswatch-dist": "amelia",
+    "angular": "1.2.30"
   }
 }

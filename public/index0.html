@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+  <title>hello</title>
+  <script src="/bower_components/angular/angular.min.js"></script>
+  <script type="text/javascript">
+    var myController = function($scope) {
+      $scope.myInput = "World!";
+    };
+
+    angular
+      .module('myApp', [])
+      .controller('myController', myController);
+  </script>
+</head>
+<body ng-controller="myController">
+  <input type="text" name="name">
+  <h1>Hi, {{ myInput }}</h1>
+</body>
+</html>
